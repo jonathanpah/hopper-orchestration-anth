@@ -1,0 +1,16 @@
+{
+  "name": "hopper-orchestration-anth",
+  "owner": {
+    "name": "Jonathan Honorio",
+    "url": "https://github.com/jonathanpah"
+  },
+  "plugins": [
+    {
+      "name": "hopper-orchestration-anth",
+      "displayName": "hopper-orchestration-anth",
+      "source": "./",
+      "description": "Coordinates an executor, a reviewer, and a validator, Claude subagents with the model and effort the user chooses."
+    }
+  ],
+  "description": "hopper-orchestration-anth"
+}

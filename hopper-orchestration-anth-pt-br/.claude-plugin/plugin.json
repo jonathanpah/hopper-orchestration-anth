@@ -1,0 +1,13 @@
+{
+  "name": "hopper-orchestration-anth",
+  "version": "0.3.1",
+  "description": "Coordena executor, revisor e validador, subagentes Claude com modelo e esforço escolhidos pelo usuário, com critérios comprovados por evidências.",
+  "author": {
+    "name": "Jonathan Honorio",
+    "url": "https://github.com/jonathanpah"
+  },
+  "homepage": "https://github.com/jonathanpah/hopper-orchestration-anth",
+  "repository": "https://github.com/jonathanpah/hopper-orchestration-anth",
+  "license": "MIT",
+  "displayName": "hopper-orchestration-anth"
+}
