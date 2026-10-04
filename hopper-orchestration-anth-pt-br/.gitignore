@@ -2,3 +2,4 @@
 .env
 .env.*
 docs-by-hopper-orchestration/
+evals/results/

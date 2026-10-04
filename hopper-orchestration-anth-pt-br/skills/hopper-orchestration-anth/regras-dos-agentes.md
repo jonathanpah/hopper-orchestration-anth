@@ -28,6 +28,7 @@ O orquestrador copia partes deste arquivo, sem mudança, para cada missão (seç
 - O agente cria arquivos temporários só em `evidencias/`, com a variável `TMPDIR` apontando para lá, e os apaga antes de entregar a passagem.
 - O agente preserva as alterações do usuário e dos outros agentes.
 - O agente não grava senhas, tokens nem chaves.
+- Se precisar de comando, acesso ou local fora da missão, o agente não usa; registra a necessidade na passagem, e o orquestrador decide.
 - O agente não fala com o usuário. O que depender do usuário vai na passagem.
 
 ## Executor

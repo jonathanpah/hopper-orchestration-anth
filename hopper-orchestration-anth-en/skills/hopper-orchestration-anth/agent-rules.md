@@ -28,6 +28,7 @@ The orchestrator copies parts of this file, unchanged, into each mission (sectio
 - The agent creates temporary files only in `evidence/`, with the `TMPDIR` variable pointing there, and deletes them before delivering the handoff.
 - The agent preserves the changes made by the user and by other agents.
 - The agent does not record passwords, tokens, or keys.
+- If it needs a command, access, or location outside the mission, the agent does not use it; it records the need in the handoff, and the orchestrator decides.
 - The agent does not talk to the user. Anything that depends on the user goes in the handoff.
 
 ## Executor

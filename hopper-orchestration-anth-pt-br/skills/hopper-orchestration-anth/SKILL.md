@@ -56,9 +56,9 @@ Só quando o usuário aciona a skill. Explicar, revisar ou planejar com a skill 
 1. **Lê a etapa anterior.** Se houver, o orquestrador lê o `resumo.md` dela (em etapas antigas, `summary.md`) e não refaz trabalho já aceito.
 2. **Define a etapa:** entrega, critérios com o tipo de cada um, limites e o responsável por cada item alterável.
 3. **Confere as próprias ferramentas:** Write, Bash, Agent e SendMessage, carregando as adiadas. Se faltar alguma, avisa o usuário e para.
-4. **Confere o modo de permissão da sessão.** Os agentes herdam esse modo. O orquestrador recomenda o modo auto, que revisa as ações dos agentes, ou o sandbox. Se a sessão estiver sem permissões (bypass), avisa o usuário antes de iniciar agentes e segue a decisão dele.
+4. **Confere o modo de permissão da sessão.** Os agentes herdam esse modo. O orquestrador recomenda o modo auto, que revisa as ações dos agentes, ou o sandbox. Se a sessão estiver sem permissões (bypass), avisa o usuário antes de iniciar agentes e segue a decisão dele. Se a etapa incluir ações que o modo auto costuma negar, como instalar em produção, apagar algo sem volta ou ler credenciais, o orquestrador avisa antes de iniciar agentes e pede, de uma vez, a troca do modo da sessão ou uma regra de permissão que libere só aquela ação.
 5. **Dimensiona a equipe.** Revisor e validador só saem da equipe se o usuário os dispensar. Se a equipe parecer grande ou pequena demais para a entrega, o orquestrador recomenda outra ao usuário, por exemplo sem validador quando não houver critério de destino. Mais de um executor, só para partes independentes. Em tudo isso, vale a decisão do usuário.
-6. **Mostra o painel.** Antes de qualquer chamada à ferramenta Agent, o orquestrador pergunta ao usuário, para cada papel da equipe, na ordem executor, revisor e validador: primeiro o modelo, depois o esforço. É uma pergunta por vez, com opções clicáveis (ferramenta AskUserQuestion). Sem essa ferramenta, o orquestrador mostra as opções numeradas e pede o número. A escolha anterior do usuário aparece primeiro. A escolha do executor vale para todos os executores.
+6. **Mostra o painel.** Antes de qualquer chamada à ferramenta Agent, o orquestrador pergunta ao usuário o modelo e o esforço de cada papel da equipe, em duas telas da ferramenta AskUserQuestion: na primeira, o modelo de cada papel; na segunda, o esforço de cada papel. Cada tela tem uma pergunta por papel, na ordem executor, revisor e validador, com opções clicáveis. Sem essa ferramenta, o orquestrador mostra as opções numeradas e pede os números. A escolha anterior do usuário aparece primeiro. A escolha do executor vale para todos os executores.
    - Modelos: Opus (`opus`), Sonnet (`sonnet`) e Fable (`fable`).
    - Esforços: High (`high`), xHigh (`xhigh`) e Max (`max`).
 7. **Cria a pasta da etapa e escreve uma missão para cada agente** (seção 6).
@@ -117,6 +117,8 @@ O orquestrador confere se a passagem tem todos os campos da parte "Passagem" de 
 | O validador discordou do tipo de um critério | Decide o tipo, registra, atualiza as missões e retoma o validador só com os critérios de destino ainda não conferidos |
 | O agente ficou bloqueado, precisa de contexto ou concluiu com ressalvas | Resolve, se estiver dentro da autorização; senão, pausa e leva ao usuário (seção 9) |
 
+Com uma parte pausada ou bloqueada, o orquestrador espera a passagem final do executor antes de chamar o revisor. Só executores de partes independentes trabalham ao mesmo tempo.
+
 ## 8. Como o orquestrador trata as devoluções
 
 O orquestrador conta as devoluções da etapa e age assim:
@@ -133,7 +135,7 @@ O orquestrador registra cada decisão em `eventos.md`, com o motivo. Não impõe
 
 - **Aceite:** o orquestrador aceita a etapa quando cada critério tem evidência da versão entregue e não há achado aberto. Sugestões não impedem o aceite.
 - **Pausa:** quando a etapa depende de uma decisão do usuário, o orquestrador para e entrega ao usuário o resultado parcial, o impedimento e a próxima ação recomendada. Os itens alteráveis continuam com os seus responsáveis. Com a resposta do usuário, o orquestrador retoma a etapa com os mesmos agentes.
-- **Encerramento:** depois do aceite, ou quando o usuário decide encerrar, o orquestrador escreve o `resumo.md`, libera os itens alteráveis e apaga os temporários que ele mesmo criou.
+- **Encerramento:** depois do aceite, ou quando o usuário decide encerrar, o orquestrador escreve o `resumo.md`, libera os itens alteráveis e apaga os temporários que ele mesmo criou. Se o pedido do usuário incluir algum commit, o orquestrador faz também um commit só da pasta da etapa, no repositório Git que a contém; se o pedido não incluir commit, ou se a pasta não estiver num repositório Git, registra no `resumo.md` que ela ficou fora do Git. O orquestrador não pergunta ao usuário sobre esse commit.
 
 ## 10. Como o orquestrador registra a etapa
 

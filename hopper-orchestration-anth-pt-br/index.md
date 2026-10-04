@@ -4,6 +4,7 @@
 - [Skill](skills/hopper-orchestration-anth/SKILL.md): regras de orquestração, lidas só pelo orquestrador.
 - [Regras dos agentes](skills/hopper-orchestration-anth/regras-dos-agentes.md): termos e regras que o orquestrador copia sem mudança para cada missão.
 - [Subagentes](agents/): nove definições, uma por papel (executor, revisor e validador) e esforço (high, xhigh e max).
+- [Avaliações](evals/): casos da suíte oficial (`claude plugin eval`).
 - [Contribuição](CONTRIBUTING.md): propostas, pull requests, verificações e revisão.
 - [Política de Segurança](SECURITY.md): escopo, expectativas de segurança e relato privado de vulnerabilidades.
 - [Código de Conduta](CODE_OF_CONDUCT.md): participação e moderação.

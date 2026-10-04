@@ -4,6 +4,7 @@
 - [Skill](skills/hopper-orchestration-anth/SKILL.md): the orchestration rules, read only by the orchestrator.
 - [Agent rules](skills/hopper-orchestration-anth/agent-rules.md): terms and rules the orchestrator copies unchanged into each mission.
 - [Subagents](agents/): nine definitions, one per role (executor, reviewer, and validator) and effort (high, xhigh, and max).
+- [Evals](evals/): official suite cases (`claude plugin eval`).
 - [Contributing](../CONTRIBUTING.md): proposals, pull requests, verification, and review.
 - [Security Policy](../SECURITY.md): scope, security expectations, and private vulnerability reporting.
 - [Code of Conduct](../CODE_OF_CONDUCT.md): participation and moderation.

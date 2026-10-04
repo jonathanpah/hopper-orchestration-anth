@@ -56,9 +56,9 @@ Only when the user invokes the skill. Explaining, reviewing, or planning with th
 1. **Reads the previous stage.** If there is one, the orchestrator reads its `summary.md` and does not redo work already accepted.
 2. **Defines the stage:** deliverable, criteria with the type of each one, limits, and the owner of each modifiable item.
 3. **Checks its own tools:** Write, Bash, Agent, and SendMessage, loading the deferred ones. If any is missing, it tells the user and stops.
-4. **Checks the session's permission mode.** Agents inherit this mode. The orchestrator recommends auto mode, which reviews the agents' actions, or the sandbox. If the session runs without permissions (bypass), it warns the user before starting agents and follows the user's decision.
+4. **Checks the session's permission mode.** Agents inherit this mode. The orchestrator recommends auto mode, which reviews the agents' actions, or the sandbox. If the session runs without permissions (bypass), it warns the user before starting agents and follows the user's decision. If the stage includes actions that auto mode usually denies, such as installing in production, deleting something irreversibly, or reading credentials, the orchestrator warns the user before starting agents and asks, at once, for a change of the session mode or for a permission rule that allows only that action.
 5. **Sizes the team.** The reviewer and the validator leave the team only if the user waives them. If the team seems too large or too small for the deliverable, the orchestrator recommends another one to the user, for example without a validator when there is no target criterion. More than one executor only for independent parts. In all of this, the user's decision prevails.
-6. **Shows the panel.** Before any call to the Agent tool, the orchestrator asks the user, for each role on the team, in the order executor, reviewer, and validator: first the model, then the effort. It asks one question at a time, with clickable options (AskUserQuestion tool). Without that tool, the orchestrator shows the options numbered and asks for the number. The user's previous choice appears first. The executor's choice applies to all executors.
+6. **Shows the panel.** Before any call to the Agent tool, the orchestrator asks the user for the model and the effort of each role on the team, in two screens of the AskUserQuestion tool: the first with the model of each role; the second with the effort of each role. Each screen has one question per role, in the order executor, reviewer, and validator, with clickable options. Without that tool, the orchestrator shows the options numbered and asks for the numbers. The user's previous choice appears first. The executor's choice applies to all executors.
    - Models: Opus (`opus`), Sonnet (`sonnet`), and Fable (`fable`).
    - Efforts: High (`high`), xHigh (`xhigh`), and Max (`max`).
 7. **Creates the stage folder and writes one mission per agent** (section 6).
@@ -117,6 +117,8 @@ The orchestrator checks that the handoff has every field of the "Handoff" part o
 | The validator disagreed with the type of a criterion | Decides the type, records it, updates the missions, and resumes the validator with only the target criteria not yet checked |
 | The agent is blocked, needs context, or finished with reservations | Resolves it, if it is within the authorization; otherwise, pauses and takes it to the user (section 9) |
 
+With a part paused or blocked, the orchestrator waits for the executor's final handoff before calling the reviewer. Only executors of independent parts work at the same time.
+
 ## 8. How the orchestrator handles returns
 
 The orchestrator counts the stage's returns and acts as follows:
@@ -133,7 +135,7 @@ The orchestrator records each decision in `events.md`, with its reason. It sets 
 
 - **Acceptance:** the orchestrator accepts the stage when every criterion has evidence from the delivered version and there is no open finding. Suggestions do not block acceptance.
 - **Pause:** when the stage depends on a user decision, the orchestrator stops and gives the user the partial result, the impediment, and the recommended next action. The modifiable items stay with their owners. With the user's answer, the orchestrator resumes the stage with the same agents.
-- **Closing:** after acceptance, or when the user decides to close the stage, the orchestrator writes `summary.md`, releases the modifiable items, and deletes the temporary files it created itself.
+- **Closing:** after acceptance, or when the user decides to close the stage, the orchestrator writes `summary.md`, releases the modifiable items, and deletes the temporary files it created itself. If the user's request includes any commit, the orchestrator also makes a commit of only the stage folder, in the Git repository that contains it; if the request includes no commit, or if the folder is not in a Git repository, it records in `summary.md` that the folder stayed out of Git. The orchestrator does not ask the user about this commit.
 
 ## 10. How the orchestrator records the stage
 

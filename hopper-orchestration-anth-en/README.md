@@ -63,7 +63,7 @@ CLI installation does not prove that the plugin is in the app catalog. In the Cl
 
 ### Verification
 
-Check the name, version, and content with `claude plugin list` and `claude plugin details hopper-orchestration-anth@hopper-orchestration-anth`: the skill and the nine agents must appear. Check the app separately. Installation does not run agents; testing the workflow requires invoking the skill with a bounded task.
+Check the name, version, and content with `claude plugin list` and `claude plugin details hopper-orchestration-anth@hopper-orchestration-anth`: the skill and the nine agents must appear. Check the app separately. Installation does not run agents; testing the workflow requires invoking the skill with a bounded task. The [`evals/`](evals/) folder holds the official suite cases; to repeat them, run `claude plugin eval . --tag with-write --allow-tools Write Bash SendMessage` and `claude plugin eval . --tag without-write` in this folder.
 
 ## Use
 

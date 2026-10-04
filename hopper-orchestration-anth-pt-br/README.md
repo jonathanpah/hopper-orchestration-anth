@@ -65,7 +65,7 @@ A instalação pela CLI não comprova presença no catálogo do aplicativo. No a
 
 ### Verificação
 
-Confira nome, versão e conteúdo com `claude plugin list` e `claude plugin details hopper-orchestration-anth@hopper-orchestration-anth`: a skill e os nove agentes devem aparecer. Verifique o aplicativo separadamente. A instalação não executa agentes; testar o fluxo exige acionar a skill com uma tarefa delimitada.
+Confira nome, versão e conteúdo com `claude plugin list` e `claude plugin details hopper-orchestration-anth@hopper-orchestration-anth`: a skill e os nove agentes devem aparecer. Verifique o aplicativo separadamente. A instalação não executa agentes; testar o fluxo exige acionar a skill com uma tarefa delimitada. A pasta [`evals/`](evals/) traz os casos da suíte oficial; para repeti-los, rode nesta pasta `claude plugin eval . --tag com-escrita --allow-tools Write Bash SendMessage` e `claude plugin eval . --tag sem-escrita`.
 
 ## Uso
 
