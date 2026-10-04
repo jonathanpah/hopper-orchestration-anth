@@ -1,6 +1,6 @@
 {
   "name": "hopper-orchestration-anth",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Coordena executor, revisor e validador, subagentes Claude com modelo e esforço escolhidos pelo usuário, com critérios comprovados por evidências.",
   "author": {
     "name": "Jonathan Honorio",
